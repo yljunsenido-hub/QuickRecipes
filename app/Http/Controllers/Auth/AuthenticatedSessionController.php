@@ -44,4 +44,17 @@ class AuthenticatedSessionController extends Controller
 
         return redirect('/');
     }
+
+    public const HOME = '/dashboard'; // Default
+
+    // OR override the authenticated() method in LoginController (if using it):
+
+    protected function authenticated(Request $request, $user)
+    {
+        if ($user->role === 'admin') {
+            return redirect('/admin/dashboard');
+        }
+
+        return redirect('/user/dashboard');
+    }
 }
