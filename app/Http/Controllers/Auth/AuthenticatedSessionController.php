@@ -28,7 +28,11 @@ class AuthenticatedSessionController extends Controller
 
         $request->session()->regenerate();
 
-        return redirect()->intended(route('dashboard', absolute: false));
+        $user = Auth::user();
+        if ($user->role === 'admin') {
+            return redirect('/admin/dashboard');
+        }
+        return redirect('/user/dashboard');
     }
 
     /**
@@ -45,7 +49,7 @@ class AuthenticatedSessionController extends Controller
         return redirect('/');
     }
 
-    public const HOME = '/dashboard'; // Default
+    public const HOME = '/user/dashboard'; // Default
 
     // OR override the authenticated() method in LoginController (if using it):
 
