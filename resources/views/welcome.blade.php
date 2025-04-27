@@ -42,9 +42,12 @@
                     <input type="checkbox" id="remember" class="accent-orange-500">
                     <label for="remember">Remember Me</label>
                 </div>
-                <button class="bg-orange-500 hover:bg-orange-600 text-white font-bold py-2 px-4 rounded">Login</button>
-                <button class="bg-orange-500 hover:bg-orange-600 text-white font-bold py-2 px-4 rounded">Sign Up</button>
-                
+                    <a href="{{ route('login') }}" class="text-center bg-orange-500 hover:bg-orange-600 text-white font-bold py-2 px-4 rounded">
+                        Log in
+                    </a>
+                    <a href="{{ route('register') }}" class="text-center bg-orange-500 hover:bg-orange-600 text-white font-bold py-2 px-4 rounded">
+                        Register
+                    </a>
                 <a href="#" class="text-sm text-white hover:underline text-center">Lost your password?</a>
                 <p class="text-xs text-white text-center mt-4">
                     By clicking on "Sign in now" you agree to<br>
