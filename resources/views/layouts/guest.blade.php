@@ -15,8 +15,8 @@
         @vite(['resources/css/app.css', 'resources/js/app.js'])
     </head>
     <body class="h-screen w-screen bg-cover bg-center" style="background-image: url('/images/background.jpg');">
-    <div class="h-full w-full bg-black/50 flex items-center justify-center">
-            <div class="flex flex-col md:flex-row w-11/12 md:w-8/12 lg:w-6/12 bg-white/20 rounded-lg p-8 backdrop-blur-sm">
+    <div class="h-full w-full bg-black/10 flex items-center justify-center">
+            <div class="flex flex-col md:flex-row w-11/12 md:w-8/12 lg:w-6/12  rounded-lg p-8 " style="background-color: #28283B; ">
                 {{ $slot }}
             </div>
         </div>
