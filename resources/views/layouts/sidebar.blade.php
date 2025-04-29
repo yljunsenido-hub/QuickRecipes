@@ -18,7 +18,7 @@
                         </div>
 
                         <div class="rounded-lg bg-gray-100 hover:bg-orange-500 border-gray border-2">
-                            <a href="{{ url('/user/dashboard') }}" class="text-md text-gray-600 block py-3 px-4 rounded transition-colors duration-200 hover:text-white {{ request()->is('/user/dashboard') }}">
+                            <a href="{{ url('/user/recipes') }}" class="text-md text-gray-600 block py-3 px-4 rounded transition-colors duration-200 hover:text-white {{ request()->is('/user/recipes') }}">
                                 <img src="{{ asset('images/foodSVG.png') }}" alt="Recipes Icon" class="inline-block mr-4 h-6 w-6">
                                 Recipes
                             </a>

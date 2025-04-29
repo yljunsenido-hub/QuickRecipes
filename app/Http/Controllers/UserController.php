@@ -10,4 +10,9 @@ class UserController extends Controller
     {
         return view('user.dashboard');
     }
+
+    public function UserRecipes()
+    {
+        return view('user.recipes');
+    }
 }

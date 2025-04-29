@@ -27,6 +27,7 @@ Route::middleware(['auth'])->group(function () {
 
     Route::group(['middleware' => ['role:user']], function () {
         Route::get('/user/dashboard', [UserController::class, 'UserDashboard']);
+        Route::get('/user/recipes', [UserController::class, 'UserRecipes']);
     });
 });
 
