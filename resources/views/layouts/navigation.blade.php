@@ -7,7 +7,7 @@
                 <div class="shrink-0 flex items-center">
                     <a href="{{ route('dashboard') }}">
                         <!-- Replace the x-application-logo with an image -->
-                        <img src="{{ asset('images/logoText.png') }}" alt="QuickRecipes Logo" class="h-8  w-auto">
+                        <img src="{{ asset('images/logo.png') }}" alt="QuickRecipes Logo" class="h-16  w-auto">
                     </a>
                 </div>
             </div>
