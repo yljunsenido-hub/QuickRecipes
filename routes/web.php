@@ -6,6 +6,8 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\UserController;
 
+use App\Http\Controllers\ManageRecipeController;
+
 Route::get('/', function () {
     return view('welcome');
 });
@@ -23,6 +25,9 @@ Route::middleware('auth')->group(function () {
 Route::middleware(['auth'])->group(function () {
     Route::group(['middleware' => ['role:admin']], function () {
         Route::get('/admin/dashboard', [AdminController::class, 'AdminDashboard']);
+        Route::get('/admin/manageRecipes', [AdminController::class, 'AdminManageRecipes']);
+        Route::post('/admin/manageRecipes', [ManageRecipeController::class, 'store'])->name('recipes.store');
+        Route::get('/admin/manageRecipes', [ManageRecipeController::class, 'index']);
     });
 
     Route::group(['middleware' => ['role:user']], function () {

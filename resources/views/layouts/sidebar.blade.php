@@ -56,7 +56,7 @@
                         </div>
 
                         <div class="rounded-lg bg-gray-100 hover:bg-orange-500 border-gray border-2">
-                            <a href="{{ url('/admin/dashboard') }}" class="text-sm text-gray-600 block py-3 px-4 rounded transition-colors duration-200 hover:text-white {{ request()->is('/admin/dashboard') }}">
+                            <a href="{{ url('/admin/manageRecipes') }}" class="text-sm text-gray-600 block py-3 px-4 rounded transition-colors duration-200 hover:text-white {{ request()->is('/admin/manageRecipes') }}">
                                 <img src="{{ asset('images/foodSVG.png') }}" alt="Recipes Icon" class="inline-block mr-4 h-6 w-6">
                                 Manage Recipes
                             </a>
