@@ -1,4 +1,5 @@
 <x-app-layout>
+    //hehh
     <div class="py-2">
         <div class="max-w-7xl mx-auto sm:px-2 lg:px-2">
             <div class="bg-white h-screen dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
