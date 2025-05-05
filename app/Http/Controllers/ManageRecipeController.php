@@ -30,5 +30,12 @@ class ManageRecipeController extends Controller
     }
 
 
+    // This is for the view (Searching for the ID of recipe then show all the datas in the table)
+    public function RecipeViews($id)
+    {
+        $recipe = ManageRecipe::findOrFail($id);
+        return view('admin.recipeView', compact('recipe'));
+    }
+
 
 }

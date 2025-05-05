@@ -65,17 +65,17 @@
                     <th class="py-2 px-4 border-b w-16 text-center">ID</th>
                     <th class="py-2 px-4 border-b text-left w-1/3">Recipe Name</th>
                     <th class="py-2 px-4 border-b text-left w-1/4">Category</th>
-                    <th class="py-2 px-4 border-b text-left w-1/3">Actions</th>
+                    <th class="py-2 px-4 border-b text-left w-1/3 text-center">Actions</th>
                 </tr>
                 </thead>
-                <tbody>
-                 @foreach ($recipes as $recipe)
+                    <tbody>
+                        @foreach ($recipes as $recipe)
                             <tr class="hover:bg-gray-50">
                                 <td class="py-2 px-4 border-b text-center">{{ $recipe->id }}</td>
                                 <td class="py-2 px-4 border-b">{{ $recipe->recipe_name }}</td>
                                 <td class="py-2 px-4 border-b">{{ $recipe->category }}</td>
                                 <td class="py-2 px-4 border-b text-center space-x-2">
-                                    <button class="bg-blue-500 text-white px-3 py-1 rounded hover:bg-blue-600">View</button>
+                                    <a href="{{ route('recipes.views', $recipe->id) }}" class="bg-blue-500 text-white px-3 py-1.5 rounded hover:bg-blue-600">View</a>
                                     <button class="bg-yellow-500 text-white px-3 py-1 rounded hover:bg-yellow-600">Update</button>
                                     <button class="bg-red-500 text-white px-3 py-1 rounded hover:bg-red-600">Delete</button>
                                 </td>
