@@ -17,19 +17,17 @@ class ManageRecipeController extends Controller
             'cook_time' => 'nullable|string',
         ]);
 
-        Recipe::create($data);
+        ManageRecipe::create($data);
 
         return redirect()->back()->with('success', 'Recipe added!');
     }
 
     public function index()
-{
-    // Fetch all recipes from the database
-    $recipes = ManageRecipe::latest()->get();  // Retrieve latest recipes
-
-    // Pass the recipes to the view
-    return view('admin.manageRecipes', compact('recipes'));
-}
+    {
+        // Fetch all recipes from the database
+        $recipes = ManageRecipe::latest()->paginate(5);  // Retrieve latest recipes
+        return view('admin.manageRecipes', compact('recipes'));
+    }
 
 
 
