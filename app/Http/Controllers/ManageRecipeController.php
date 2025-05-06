@@ -36,6 +36,7 @@ class ManageRecipeController extends Controller
         $recipe = ManageRecipe::findOrFail($id);
     }
 
+    // Updating the Recipe Informations based on their ID
     public function update(Request $request, $id)
     {
         $recipe = ManageRecipe::findOrFail($id);
@@ -51,5 +52,14 @@ class ManageRecipeController extends Controller
         $recipe->update($data);
 
         return redirect()->back()->with('success', 'Recipe updated successfully!');
+    }
+
+    // Deleting Recipe base on their ID
+    public function destroy($id)
+    {
+        $deleteRecipe = ManageRecipe::find($id);
+        $deleteRecipe->delete();
+
+        return redirect()->back()->with('success', 'Recipe deleted successfully.');
     }
 }

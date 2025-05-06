@@ -29,7 +29,7 @@ Route::middleware(['auth'])->group(function () {
         Route::post('/admin/manageRecipes', [ManageRecipeController::class, 'store'])->name('recipes.store');
         Route::get('/admin/manageRecipes', [ManageRecipeController::class, 'index'])->name('admin.manageRecipes');
         Route::put('/admin/manageRecipes/update/{id}', [ManageRecipeController::class, 'update'])->name('recipes.update');
-
+        Route::delete('/recipes/{id}', [ManageRecipeController::class, 'destroy'])->name('recipes.destroy');
     });
 
     Route::group(['middleware' => ['role:user']], function () {
