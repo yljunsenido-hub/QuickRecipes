@@ -57,37 +57,71 @@
                     </div>
                 </div>
             </div>
-
-            <div class="container mx-auto p-4">
-            <table class="min-w-full border border-gray-300 text-sm bg-white">
-                <thead class="bg-gray-100">
-                <tr>
-                    <th class="py-2 px-4 border-b w-16 text-center">ID</th>
-                    <th class="py-2 px-4 border-b text-left w-1/3">Recipe Name</th>
-                    <th class="py-2 px-4 border-b text-left w-1/4">Category</th>
-                    <th class="py-2 px-4 border-b text-left w-1/3 text-center">Actions</th>
-                </tr>
-                </thead>
-                    <tbody>
-                        @foreach ($recipes as $recipe)
-                            <tr class="hover:bg-gray-50">
-                                <td class="py-2 px-4 border-b text-center">{{ $recipe->id }}</td>
-                                <td class="py-2 px-4 border-b">{{ $recipe->recipe_name }}</td>
-                                <td class="py-2 px-4 border-b">{{ $recipe->category }}</td>
-                                <td class="py-2 px-4 border-b text-center space-x-2">
-                                    <a href="{{ route('recipes.views', $recipe->id) }}" class="bg-blue-500 text-white px-3 py-1.5 rounded hover:bg-blue-600">View</a>
-                                    <button class="bg-yellow-500 text-white px-3 py-1 rounded hover:bg-yellow-600">Update</button>
-                                    <button class="bg-red-500 text-white px-3 py-1 rounded hover:bg-red-600">Delete</button>
-                                </td>
+            <div x-data="{ showDetails: false, selectedRecipe: {} }">    
+                <div class="container mx-auto p-4">
+                <table class="min-w-full border border-gray-300 text-sm bg-white">
+                    <thead class="bg-gray-100">
+                    <tr>
+                        <th class="py-2 px-4 border-b w-16 text-center">ID</th>
+                        <th class="py-2 px-4 border-b text-left w-1/3">Recipe Name</th>
+                        <th class="py-2 px-4 border-b text-left w-1/4">Category</th>
+                        <th class="py-2 px-4 border-b text-left w-1/3 text-center">Actions</th>
+                    </tr>
+                    </thead>
+                        <tbody>
+                            @foreach ($recipes as $recipe)
+                                <tr class="hover:bg-gray-50">
+                                    <td class="py-2 px-4 border-b text-center">{{ $recipe->id }}</td>
+                                    <td class="py-2 px-4 border-b">{{ $recipe->recipe_name }}</td>
+                                    <td class="py-2 px-4 border-b">{{ $recipe->category }}</td>
+                                    <td class="py-2 px-4 border-b text-center space-x-2">
+                                        <button @click="selectedRecipe = {{ $recipe }}, showDetails = true" class="bg-blue-500 text-white px-3 py-1 rounded hover:bg-blue-600">
+                                            View
+                                        </button>
+                                        <button class="bg-yellow-500 text-white px-3 py-1 rounded hover:bg-yellow-600">Update</button>
+                                        <button class="bg-red-500 text-white px-3 py-1 rounded hover:bg-red-600">Delete</button>
+                                    </td>
+                                </tr>
+                            @endforeach
+                        </tbody>
+                    </table>
+                    <!-- Pagination Links -->
+                    <div class="mt-4">
+                        {{ $recipes->links() }}
+                    </div>  
+                </div>
+                
+            
+                <div class="container mx-auto p-4" x-show="showDetails">
+                    <table class="min-w-full border border-gray-300 text-sm bg-white">
+                        <tbody>
+                            <tr class="border-b hover:bg-gray-50">
+                                <th class="py-2 px-4 text-left bg-gray-100 w-40">Recipe ID</th>
+                                <td class="py-2 px-4" x-text="selectedRecipe.id"></td>
                             </tr>
-                        @endforeach
-                    </tbody>
-                </table>
-
-                <!-- Pagination Links -->
-                <div class="mt-4">
-                    {{ $recipes->links() }}
-                </div>  
+                            <tr class="border-b hover:bg-gray-50">
+                                <th class="py-2 px-4 text-left bg-gray-100">Recipe Name</th>
+                                <td class="py-2 px-4" x-text="selectedRecipe.recipe_name"></td>
+                            </tr>
+                            <tr class="border-b hover:bg-gray-50">
+                                <th class="py-2 px-4 text-left bg-gray-100">Category</th>
+                                <td class="py-2 px-4" x-text="selectedRecipe.category"></td>
+                            </tr>
+                            <tr class="border-b hover:bg-gray-50">
+                                <th class="py-2 px-4 text-left bg-gray-100">Ingredient</th>
+                                <td class="py-2 px-4" x-text="selectedRecipe.ingredient"></td>
+                            </tr>
+                            <tr class="border-b hover:bg-gray-50">
+                                <th class="py-2 px-4 text-left bg-gray-100">Instructions</th>
+                                <td class="py-2 px-4" x-text="selectedRecipe.instructions"></td>
+                            </tr>
+                            <tr class="hover:bg-gray-50">
+                                <th class="py-2 px-4 text-left bg-gray-100">Cook Time</th>
+                                <td class="py-2 px-4" x-text="selectedRecipe.cook_time"></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
             </div>
         </div>
     </div>

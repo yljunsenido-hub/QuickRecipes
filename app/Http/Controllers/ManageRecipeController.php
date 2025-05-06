@@ -25,7 +25,7 @@ class ManageRecipeController extends Controller
     public function index()
     {
         // Fetch all recipes from the database
-        $recipes = ManageRecipe::latest()->paginate(5);  // Retrieve latest recipes
+        $recipes = ManageRecipe::latest()->paginate(3);  // Retrieve latest recipes
         return view('admin.manageRecipes', compact('recipes'));
     }
 
@@ -34,8 +34,22 @@ class ManageRecipeController extends Controller
     public function RecipeViews($id)
     {
         $recipe = ManageRecipe::findOrFail($id);
-        return view('admin.recipeView', compact('recipe'));
     }
 
+    public function update(Request $request, $id)
+    {
+        $recipe = ManageRecipe::findOrFail($id);
 
+        $data = $request->validate([
+            'recipe_name' => 'required|string|max:255',
+            'category' => 'required|string|max:255',
+            'ingredient' => 'required|string',
+            'instructions' => 'required|string',
+            'cook_time' => 'nullable|string',
+        ]);
+
+        $recipe->update($data);
+
+        return redirect()->back()->with('success', 'Recipe updated successfully!');
+    }
 }

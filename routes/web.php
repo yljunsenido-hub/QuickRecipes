@@ -28,7 +28,8 @@ Route::middleware(['auth'])->group(function () {
         Route::get('/admin/manageRecipes', [AdminController::class, 'AdminManageRecipes']);
         Route::post('/admin/manageRecipes', [ManageRecipeController::class, 'store'])->name('recipes.store');
         Route::get('/admin/manageRecipes', [ManageRecipeController::class, 'index'])->name('admin.manageRecipes');
-        Route::get('/admin/manageRecipes/views/{id}', [ManageRecipeController::class, 'RecipeViews'])->name('recipes.views');
+        Route::put('/admin/manageRecipes/update/{id}', [ManageRecipeController::class, 'update'])->name('recipes.update');
+
     });
 
     Route::group(['middleware' => ['role:user']], function () {
