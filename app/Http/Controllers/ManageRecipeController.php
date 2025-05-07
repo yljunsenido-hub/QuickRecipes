@@ -62,4 +62,20 @@ class ManageRecipeController extends Controller
 
         return redirect()->back()->with('success', 'Recipe deleted successfully.');
     }
+
+
+
+
+
+
+
+
+
+    // This is for User functions
+
+    public function recipesIndex()
+    {
+        $userRecipes = ManageRecipe::latest()->get();
+        return view('user.recipes', compact('userRecipes'));
+    }
 }
