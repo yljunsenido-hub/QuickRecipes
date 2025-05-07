@@ -1,9 +1,9 @@
 <x-app-layout>
     <div class="py-2">
         <div class="max-w-7xl mx-auto sm:px-2 lg:px-2">
-            <div class="bg-white h-auto py-12 dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
+            <div class="bg-[#F4F2EE] h-auto py-12 overflow-hidden shadow-sm sm:rounded-lg">
             <!-- Horizontal Scrollable Recipe Cards -->
-            <div class="overflow-x-auto px-10 mt-10 ">
+            <div class="overflow-x-auto px-10 mt-10">
                 <div class="flex flex-nowrap gap-8 pb-4">
                     @foreach ($userRecipes as $userRecipe)
                         <div class="relative w-64 flex-shrink-0 mt-16">
@@ -31,7 +31,7 @@
 
                                 <div class="flex justify-between items-center px-4 py-3 border-t">
                                     <span class="text-sm text-gray-500">{{$userRecipe->cook_time}}</span>
-                                    <button class="bg-green-500 text-white text-sm px-3 py-1.5 rounded hover:bg-green-600">View Recipe</button>
+                                    <a href="{{ route('user.viewRecipes', ['id' => $userRecipe->id]) }}" class="bg-green-500 text-white text-sm px-3 py-1.5 rounded hover:bg-green-600">View Recipe</a>
                                 </div>
                             </div>
                         </div>

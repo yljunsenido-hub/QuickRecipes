@@ -78,4 +78,10 @@ class ManageRecipeController extends Controller
         $userRecipes = ManageRecipe::latest()->get();
         return view('user.recipes', compact('userRecipes'));
     }
+
+    public function viewRecipesIndex($id)
+    {
+        $viewRecipes = ManageRecipe::findOrFail($id);
+        return view('user.viewRecipe', compact('viewRecipes'));
+    }
 }
