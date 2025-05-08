@@ -113,7 +113,7 @@
                                                     <h2 class="text-start text-xl font-semibold mb-4">Update Recipe</h2>
 
                                                     <!-- Form -->
-                                                    <form method="POST" action="{{ route('recipes.update', $recipe->id) }}">
+                                                    <form method="POST" action="{{ route('recipes.update', $recipe->id) }}" enctype="multipart/form-data">
                                                         @csrf
                                                         @method('PUT')
 
@@ -141,6 +141,10 @@
                                                             <label class="text-start block text-sm font-medium">Cook Time</label>
                                                             <input type="text" name="cook_time" value="{{ $recipe->cook_time }}"
                                                                 class="w-full border px-3 py-2 rounded" required>
+                                                        </div>
+                                                        <div class="mb-4">
+                                                            <label class="text-start block text-sm font-medium">Recipe Image</label>
+                                                            <input type="file" name="recipe_image" class="w-full border px-3 py-2 rounded" accept="image/*" required>
                                                         </div>
 
                                                         <div class="flex justify-end gap-2">
@@ -226,9 +230,15 @@
                                 <th class="py-2 px-4 text-left bg-gray-100">Instructions</th>
                                 <td class="py-2 px-4" x-text="selectedRecipe.instructions"></td>
                             </tr>
-                            <tr class="hover:bg-gray-50">
+                            <tr class="border-b hover:bg-gray-50">
                                 <th class="py-2 px-4 text-left bg-gray-100">Cook Time</th>
                                 <td class="py-2 px-4" x-text="selectedRecipe.cook_time"></td>
+                            </tr>
+                            <tr class="hover:bg-gray-50">
+                                <th class="py-2 px-4 text-left bg-gray-100">Recipe Image</th>
+                                <td class="py-2 px-4">
+                                    <img :src="`/storage/${selectedRecipe.recipe_image}`" alt="Recipe Image" class="w-32 h-32 object-cover rounded">
+                                </td>
                             </tr>
                         </tbody>
                     </table>

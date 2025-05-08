@@ -2,11 +2,14 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Support\Facades\Storage;
 use App\Models\ManageRecipe;
 use Illuminate\Http\Request;
 
 class ManageRecipeController extends Controller
 {
+
+    // Creating Recipes and Storing in Database
     public function store(Request $request)
     {
         $data = $request->validate([
@@ -54,18 +57,35 @@ class ManageRecipeController extends Controller
             'ingredient' => 'required|string',
             'instructions' => 'required|string',
             'cook_time' => 'nullable|string',
-            'recipe_image' => 'nullable|string',
+            'recipe_image' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
         ]);
 
+        // Handle image upload
+        if ($request->hasFile('recipe_image')) {
+            // Delete old image if it exists
+            if ($recipe->recipe_image && Storage::disk('public')->exists($recipe->recipe_image)) {
+                Storage::disk('public')->delete($recipe->recipe_image);
+            }
+
+            // Store new image
+            $data['recipe_image'] = $request->file('recipe_image')->store('recipes', 'public');
+        }
+
+        // Update recipe with new data
         $recipe->update($data);
 
-        return redirect()->back()->with('success', 'Recipe updated successfully!');
+        return redirect()->back()->with('success', 'Recipe updated!');
     }
 
     // Deleting Recipe base on their ID
     public function destroy($id)
     {
-        $deleteRecipe = ManageRecipe::find($id);
+        $deleteRecipe = ManageRecipe::findOrFail($id);
+        
+        if ($deleteRecipe->recipe_image && Storage::disk('public')->exists($deleteRecipe->recipe_image)) {
+            Storage::disk('public')->delete($deleteRecipe->recipe_image);
+        }
+
         $deleteRecipe->delete();
 
         return redirect()->back()->with('success', 'Recipe deleted successfully.');
