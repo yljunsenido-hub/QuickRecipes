@@ -9,7 +9,7 @@
                         <div class="relative w-64 flex-shrink-0 mt-16">
                             <!-- Overlapping Image -->
                             <div class="absolute -top-10 left-1/2 transform -translate-x-1/2 z-10">
-                                <img src="/images/adminProf.png" alt="Special Salad Chicken" class="w-32 h-32 object-cover rounded-full border-4 border-white shadow-md">
+                                <img src="{{ asset('storage/' . $userRecipe->recipe_image) }}" alt="Recipe Image" class="w-32 h-32 object-cover rounded-full border-4 border-white shadow-md">
                             </div>
 
                             <!-- Card Content -->

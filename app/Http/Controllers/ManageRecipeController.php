@@ -15,12 +15,19 @@ class ManageRecipeController extends Controller
             'ingredient' => 'required|string',
             'instructions' => 'required|string',
             'cook_time' => 'nullable|string',
+            'recipe_image' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
         ]);
+
+        // Handle the image upload
+        if ($request->hasFile('recipe_image')) {
+            $data['recipe_image'] = $request->file('recipe_image')->store('recipes', 'public');
+        }
 
         ManageRecipe::create($data);
 
         return redirect()->back()->with('success', 'Recipe added!');
     }
+
 
     public function index()
     {
@@ -47,6 +54,7 @@ class ManageRecipeController extends Controller
             'ingredient' => 'required|string',
             'instructions' => 'required|string',
             'cook_time' => 'nullable|string',
+            'recipe_image' => 'nullable|string',
         ]);
 
         $recipe->update($data);

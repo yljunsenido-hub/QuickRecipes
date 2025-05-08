@@ -9,6 +9,6 @@ class ManageRecipe extends Model
     protected $table = 'manage_recipe';
     
     protected $fillable = [
-        'recipe_name', 'category', 'ingredient', 'instructions', 'cook_time'
+        'recipe_name', 'category', 'ingredient', 'instructions', 'cook_time', 'recipe_image'
     ];
 }

@@ -33,7 +33,7 @@
                             <h2 class="text-xl font-semibold mb-4">Add New Recipe</h2>
 
                             <!-- Form -->
-                            <form method="POST" action="{{route('recipes.store')}}">
+                            <form method="POST" action="{{ route('recipes.store') }}" enctype="multipart/form-data">
                                 @csrf
                                 <div class="mb-4">
                                     <label class="block text-sm font-medium">Recipe Name</label>
@@ -54,6 +54,10 @@
                                 <div class="mb-4">
                                     <label class="block text-sm font-medium">Cook Time</label>
                                     <input type="text" name="cook_time" class="w-full border px-3 py-2 rounded" required>
+                                </div>
+                                <div class="mb-4">
+                                    <label class="block text-sm font-medium">Recipe Image</label>
+                                    <input type="file" name="recipe_image" class="w-full border px-3 py-2 rounded" accept="image/*" required>
                                 </div>
                                 <div class="flex justify-end space-x-2">                        
                                     <button type="submit" class="bg-green-600 text-white px-4 py-2 rounded hover:bg-green-700">Save</button>
