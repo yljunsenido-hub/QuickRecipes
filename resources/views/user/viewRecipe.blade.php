@@ -6,6 +6,7 @@
             <h1>{{ $viewRecipes->recipe_name }}</h1>
             <p>Category: {{ $viewRecipes->category }}</p>
             <p>Cook Time: {{ $viewRecipes->cook_time }}</p>
+            <p>Instructions: {{$viewRecipes->instructions}}<p>
 
             </div>
         </div>

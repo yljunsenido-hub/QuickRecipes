@@ -3,13 +3,13 @@
         <div class="max-w-7xl mx-auto sm:px-2 lg:px-2">
             <div class="bg-[#F4F2EE] h-auto py-12 overflow-hidden shadow-sm sm:rounded-lg">
             <!-- Horizontal Scrollable Recipe Cards -->
-            <div class="overflow-x-auto px-10 mt-10">
-                <div class="flex flex-nowrap gap-8 pb-4">
+            <div class="overflow-x-auto px-4 mt-10">
+                <div class="flex flex-nowrap gap-4 pb-4">
                     @foreach ($userRecipes as $userRecipe)
-                        <div class="relative w-64 flex-shrink-0 mt-16">
+                        <div class="relative w-60 flex-shrink-0 mt-16">
                             <!-- Overlapping Image -->
                             <div class="absolute -top-10 left-1/2 transform -translate-x-1/2 z-10">
-                                <img src="{{ asset('storage/' . $userRecipe->recipe_image) }}" alt="Recipe Image" class="w-32 h-32 object-cover rounded-full border-4 border-white shadow-md">
+                                <img src="{{ asset('storage/' . $userRecipe->recipe_image) }}" alt="Recipe Image" class="w-30 h-30 object-cover rounded-full border-4 border-white shadow-md">
                             </div>
 
                             <!-- Card Content -->
