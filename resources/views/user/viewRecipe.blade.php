@@ -7,7 +7,7 @@
             <p>Category: {{ $viewRecipes->category }}</p>
             <p>Cook Time: {{ $viewRecipes->cook_time }}</p>
             <p>Instructions: {{$viewRecipes->instructions}}<p>
-
+            <p>Hi</p>
             </div>
         </div>
     </div>
