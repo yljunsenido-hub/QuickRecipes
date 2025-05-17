@@ -7,6 +7,7 @@ use App\Http\Controllers\AdminController;
 use App\Http\Controllers\UserController;
 
 use App\Http\Controllers\ManageRecipeController;
+use App\Http\Controllers\RecipeController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -37,6 +38,7 @@ Route::middleware(['auth'])->group(function () {
         Route::get('/user/recipes', [UserController::class, 'UserRecipes']);
         Route::get('/user/recipes', [ManageRecipeController::class, 'recipesIndex'])->name('user.recipes');
         Route::get('/user/viewRecipe/{id}', [ManageRecipeController::class, 'viewRecipesIndex'])->name('user.viewRecipes');
+        Route::get('/user/recipes', [RecipeController::class, 'index'])->name('user.recipes');
     });
 });
 
