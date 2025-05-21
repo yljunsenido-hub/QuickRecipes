@@ -2,24 +2,24 @@
     <div class="py-2">
         <div class="max-w-7xl mx-auto sm:px-2 lg:px-2">
             <div class="bg-[#F4F2EE] h-auto py-12 overflow-hidden shadow-sm sm:rounded-lg">
-                <form method="GET" action="{{ route('user.recipes') }}">
-                    <input name="query" type="text" placeholder="Search recipes..." value="{{ $query }}" class="border p-2 rounded">
+                <form>
+                    <input name="query" type="text" placeholder="Search recipes..." class="border p-2 rounded">
                     <button type="submit" class="bg-blue-500 text-white px-4 py-2 rounded">Search</button>
                 </form>
             <!-- Horizontal Scrollable Recipe Cards -->
             <div class="overflow-x-auto px-4 mt-10">
                 <div class="flex flex-nowrap gap-4 pb-4">
-                    @foreach ($recipes['results'] as $recipe)
+                    @foreach ($userRecipes as $userRecipe)
                         <div class="relative w-60 flex-shrink-0 mt-16">
                             <!-- Overlapping Image -->
                             <div class="absolute -top-10 left-1/2 transform -translate-x-1/2 z-10">
-                                <img src="{{ $recipe['image'] }}" alt="{{ $recipe['title'] }}" alt="Recipe Image" class="w-30 h-30 object-cover rounded-full border-4 border-white shadow-md">
+                                 <img src="{{ asset('storage/' . $userRecipe->recipe_image) }}" alt="Recipe Image" class="w-30 h-30 object-cover rounded-full border-4 border-white shadow-md">
                             </div>
 
                             <!-- Card Content -->
                             <div class="bg-white rounded-3xl shadow-md pt-24 overflow-hidden">
                                 <div class="p-4">
-                                    <h3 class="text-lg font-semibold text-gray-900 text-center">{{ $recipe['title'] }}</h3>
+                                     <h3 class="text-lg font-semibold text-gray-900 text-center">{{$userRecipe->recipe_name}}</h3>
 
                                     <div class="flex justify-center items-center space-x-1 text-yellow-400 mt-2">
                                         @for ($j = 1; $j <= 5; $j++)
@@ -34,7 +34,8 @@
                                 </div>
 
                                 <div class="flex justify-between items-center px-4 py-3 border-t">
-                                    <a href="" class="bg-green-500 text-white text-sm px-3 py-1.5 rounded hover:bg-green-600">View Recipe</a>
+                                     <span class="text-sm text-gray-500">{{$userRecipe->cook_time}}</span>
+                                    <a href="{{ route('user.viewRecipes', ['id' => $userRecipe->id]) }}" class="bg-green-500 text-white text-sm px-3 py-1.5 rounded hover:bg-green-600">View Recipe</a>
                                 </div>
                             </div>
                         </div>
