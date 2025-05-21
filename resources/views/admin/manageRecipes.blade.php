@@ -24,10 +24,9 @@
                     <div x-show="showModal"
                         class="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-50"
                         x-transition>
-                    
-                        <div
-                            @click.away="showModal = false"
-                            class="bg-white rounded-lg shadow-lg p-6 w-full max-w-lg"
+
+                        <div @click.away="showModal = false"
+                            class="bg-white rounded-lg shadow-lg w-full max-w-lg mx-4 max-h-[90vh] overflow-y-auto p-6"
                             x-transition>
 
                             <h2 class="text-xl font-semibold mb-4">Add New Recipe</h2>
@@ -35,39 +34,46 @@
                             <!-- Form -->
                             <form method="POST" action="{{ route('recipes.store') }}" enctype="multipart/form-data">
                                 @csrf
+
                                 <div class="mb-4">
                                     <label class="block text-sm font-medium">Recipe Name</label>
                                     <input type="text" name="recipe_name" class="w-full border px-3 py-2 rounded" required>
                                 </div>
+
                                 <div class="mb-4">
                                     <label class="block text-sm font-medium">Category</label>
                                     <input type="text" name="category" class="w-full border px-3 py-2 rounded" required>
                                 </div>
+
                                 <div class="mb-4">
-                                    <label class="block text-sm font-medium">Ingredients</label>
-                                    <input type="text" name="ingredient" class="w-full border px-3 py-2 rounded" required>
+                                    <label class="block text-sm font-medium" for="ingredient">Ingredients (one per line)</label>
+                                    <textarea id="ingredient" name="ingredient" rows="8" class="w-full border px-3 py-2 rounded" required></textarea>
                                 </div>
+
                                 <div class="mb-4">
                                     <label class="block text-sm font-medium">Instructions</label>
                                     <input type="text" name="instructions" class="w-full border px-3 py-2 rounded" required>
                                 </div>
+
                                 <div class="mb-4">
                                     <label class="block text-sm font-medium">Cook Time</label>
                                     <input type="text" name="cook_time" class="w-full border px-3 py-2 rounded" required>
                                 </div>
+
                                 <div class="mb-4">
                                     <label class="block text-sm font-medium">Recipe Image</label>
                                     <input type="file" name="recipe_image" class="w-full border px-3 py-2 rounded" accept="image/*" required>
                                 </div>
-                                <div class="flex justify-end space-x-2">                        
+
+                                <div class="flex justify-end space-x-2 pt-2">                        
                                     <button type="submit" class="bg-green-600 text-white px-4 py-2 rounded hover:bg-green-700">Save</button>
                                     <button type="button" @click="showModal = false" class="bg-gray-500 text-white px-4 py-2 rounded hover:bg-gray-600">Cancel</button>
                                 </div>
                             </form>
+
                         </div>
                     </div>
-                </div>
-                
+
             <div x-data="{ showDetails: false, selectedRecipe: {} }">    
                 <div class="container mx-auto p-6">
                 <table class="min-w-full border border-gray-200 text-sm bg-white">
@@ -90,9 +96,11 @@
                                 <td class="py-2 px-4 border-b text-center">
                                     <div class="flex justify-center items-center gap-2">
                                         <!-- View Button -->
-                                        <button @click="selectedRecipe = {{ $recipe }}, showDetails = true"
-                                            class="bg-blue-500 text-white px-4 py-1.5 rounded hover:bg-blue-600 transition">
-                                            View
+                                        <button @click="
+                                            selectedRecipe = {{ $recipe }};
+                                            selectedRecipe.ingredient = JSON.parse(selectedRecipe.ingredient);
+                                            showDetails = true;
+                                        " class="bg-blue-500 text-white px-4 py-1.5 rounded hover:bg-blue-600 transition">View
                                         </button>
 
                                         <!-- Update Modal with Button -->
@@ -224,7 +232,13 @@
                             </tr>
                             <tr class="border-b hover:bg-gray-50">
                                 <th class="py-2 px-4 text-left bg-gray-100">Ingredient</th>
-                                <td class="py-2 px-4" x-text="selectedRecipe.ingredient"></td>
+                                <td class="py-2 px-4">
+                                    <ul class="list-disc list-inside">
+                                        <template x-for="item in selectedRecipe.ingredient" :key="item">
+                                            <li x-text="item"></li>
+                                        </template>
+                                    </ul>
+                                </td>
                             </tr>
                             <tr class="border-b hover:bg-gray-50">
                                 <th class="py-2 px-4 text-left bg-gray-100">Instructions</th>

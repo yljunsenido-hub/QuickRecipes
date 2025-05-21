@@ -12,7 +12,7 @@ class ManageRecipeController extends Controller
     // Creating Recipes and Storing in Database
     public function store(Request $request)
     {
-        $data = $request->validate([
+        $request->validate([
             'recipe_name' => 'required|string|max:255',
             'category' => 'required|string|max:255',
             'ingredient' => 'required|string',
@@ -21,19 +21,30 @@ class ManageRecipeController extends Controller
             'recipe_image' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
         ]);
 
+        // Process ingredients into array
+        $ingredient = array_filter(array_map('trim', explode("\n", $request->ingredient)));
+
         // Handle the image upload
+        $imagePath = null;
         if ($request->hasFile('recipe_image')) {
-            $data['recipe_image'] = $request->file('recipe_image')->store('recipes', 'public');
+            $imagePath = $request->file('recipe_image')->store('recipes', 'public');
         }
 
-        ManageRecipe::create($data);
+        ManageRecipe::create([
+            'recipe_name' => $request->recipe_name,
+            'category' => $request->category,
+            'ingredient' => json_encode($ingredient), // or just join with newline if storing as plain text
+            'instructions' => $request->instructions,
+            'cook_time' => $request->cook_time,
+            'recipe_image' => $imagePath,
+        ]);
 
         return redirect()->back()->with('success', 'Recipe added!');
     }
 
 
     public function index()
-    {
+    {   
         // Fetch all recipes from the database
         $recipes = ManageRecipe::latest()->paginate(3);  // Retrieve latest recipes
         return view('admin.manageRecipes', compact('recipes'));
