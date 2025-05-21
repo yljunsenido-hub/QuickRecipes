@@ -2,10 +2,12 @@
     <div class="py-2">
         <div class="max-w-7xl mx-auto sm:px-2 lg:px-2">
             <div class="bg-[#F4F2EE] h-auto py-12 overflow-hidden shadow-sm sm:rounded-lg">
-                <form>
-                    <input name="query" type="text" placeholder="Search recipes..." class="border p-2 rounded">
-                    <button type="submit" class="bg-blue-500 text-white px-4 py-2 rounded">Search</button>
-                </form>
+                <div class="flex justify-end">
+                    <form class="mr-5">
+                        <input name="query" type="text" placeholder="Search recipes..." class="border p-2 rounded">
+                        <button type="submit" class="bg-orange-500 text-white px-4 py-2 rounded">Search</button>
+                    </form>
+                </div>
             <!-- Horizontal Scrollable Recipe Cards -->
             <div class="overflow-x-auto px-4 mt-10">
                 <div class="flex flex-nowrap gap-4 pb-4">
@@ -35,7 +37,7 @@
 
                                 <div class="flex justify-between items-center px-4 py-3 border-t">
                                      <span class="text-sm text-gray-500">{{$userRecipe->cook_time}}</span>
-                                    <a href="{{ route('user.viewRecipes', ['id' => $userRecipe->id]) }}" class="bg-green-500 text-white text-sm px-3 py-1.5 rounded hover:bg-green-600">View Recipe</a>
+                                    <a href="{{ route('user.viewRecipes', ['id' => $userRecipe->id]) }}" class="bg-orange-500 text-white text-sm px-3 py-1.5 rounded hover:bg-orange-600">View Recipe</a>
                                 </div>
                             </div>
                         </div>
