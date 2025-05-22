@@ -8,18 +8,6 @@
                         <button @click="showModal = true" class="text-sm bg-green-500 text-white px-4 py-2 rounded hover:bg-green-600">Add Recipe</button>
                     </div>
 
-                    @if(session('success'))
-                        <div 
-                            x-data="{ show: true }" 
-                            x-init="setTimeout(() => show = false, 2000)" 
-                            x-show="show" 
-                            class="text-green-800 p-2 rounded mt-2"
-                        >
-                        <div class="bg-green-300 text-green-800 p-2 px-4 rounded">
-                            {{ session('success') }}
-                        </div>
-                    @endif
-
                     <!-- Modal Overlay -->
                     <div x-show="showModal"
                         class="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-50"
