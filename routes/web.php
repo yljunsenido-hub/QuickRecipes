@@ -38,7 +38,6 @@ Route::middleware(['auth'])->group(function () {
         Route::get('/user/recipes', [UserController::class, 'UserRecipes']);
         Route::get('/user/recipes', [ManageRecipeController::class, 'recipesIndex'])->name('user.recipes');
         Route::get('/user/viewRecipe/{id}', [ManageRecipeController::class, 'viewRecipesIndex'])->name('user.viewRecipes');
-        
     });
 });
 

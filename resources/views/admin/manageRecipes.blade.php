@@ -51,8 +51,8 @@
                                 </div>
 
                                 <div class="mb-4">
-                                    <label class="block text-sm font-medium">Instructions</label>
-                                    <input type="text" name="instructions" class="w-full border px-3 py-2 rounded" required>
+                                    <label class="block text-sm font-medium">Instructions (one per line)</label>
+                                    <textarea id="instructions" name="instructions" rows="8" class="w-full border px-3 py-2 rounded" required></textarea>
                                 </div>
 
                                 <div class="mb-4">
@@ -242,8 +242,15 @@
                             </tr>
                             <tr class="border-b hover:bg-gray-50">
                                 <th class="py-2 px-4 text-left bg-gray-100">Instructions</th>
-                                <td class="py-2 px-4" x-text="selectedRecipe.instructions"></td>
+                                <td class="py-2 px-4">
+                                    <li>
+                                        <template x-for="(step, index) in JSON.parse(selectedRecipe.instructions ?? '[]')" :key="index">
+                                            <li x-text="step"></li>
+                                        </template>
+                                    </li>
+                                </td>
                             </tr>
+
                             <tr class="border-b hover:bg-gray-50">
                                 <th class="py-2 px-4 text-left bg-gray-100">Cook Time</th>
                                 <td class="py-2 px-4" x-text="selectedRecipe.cook_time"></td>

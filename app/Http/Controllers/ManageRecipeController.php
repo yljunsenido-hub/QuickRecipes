@@ -23,6 +23,7 @@ class ManageRecipeController extends Controller
 
         // Process ingredients into array
         $ingredient = array_filter(array_map('trim', explode("\n", $request->ingredient)));
+        $instructions = array_filter(array_map('trim', explode("\n", $request->instructions)));
 
         // Handle the image upload
         $imagePath = null;
@@ -34,7 +35,7 @@ class ManageRecipeController extends Controller
             'recipe_name' => $request->recipe_name,
             'category' => $request->category,
             'ingredient' => json_encode($ingredient), // or just join with newline if storing as plain text
-            'instructions' => $request->instructions,
+            'instructions' => json_encode($instructions),
             'cook_time' => $request->cook_time,
             'recipe_image' => $imagePath,
         ]);
