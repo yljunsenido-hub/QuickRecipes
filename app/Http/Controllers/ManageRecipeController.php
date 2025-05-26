@@ -125,3 +125,4 @@ class ManageRecipeController extends Controller
         return view('user.viewRecipe', compact('viewRecipes'));
     }
 }
+//add
